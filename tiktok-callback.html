@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClipForge – TikTok login</title>
+<style>
+  body { margin: 0; background: #0e0e12; color: #ececf1; font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 560px; margin: 0 auto; padding: 56px 16px; }
+  a { color: #ffd400; }
+</style>
+</head>
+<body>
+<main>
+  <h1>ClipForge</h1>
+  <p id="msg">Finishing the TikTok login…</p>
+</main>
+<script>
+  // TikTok sends the owner back here after login. ClipForge runs on the owner's own computer and listens on
+  // 127.0.0.1:8765; forward the code there so the desktop tool can finish the login. Nothing is stored on this site.
+  var q = window.location.search;
+  if (q.indexOf("code=") >= 0 || q.indexOf("error=") >= 0) {
+    window.location.replace("http://127.0.0.1:8765/tiktok" + q);
+  } else {
+    document.getElementById("msg").textContent = "This page is only used by the ClipForge desktop tool to finish a TikTok login.";
+  }
+</script>
+</body>
+</html>
